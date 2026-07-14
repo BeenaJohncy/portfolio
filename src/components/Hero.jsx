@@ -7,29 +7,11 @@ import {
   MessageCircleIcon,
   MoonIcon
 } from 'lucide-react';
+import mascot from "../assets/mascot.png";
 
 const Hero = () => {
   return (
     <div className="min-h-screen bg-[#020817] text-white font-sans px-6 md:px-20 py-10">
-      {/* Navbar */}
-      <nav className="flex justify-between items-center mb-20">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-teal-500 rounded flex items-center justify-center font-bold">BJ</div>
-          <span className="font-semibold text-lg">Beena Johncy</span>
-        </div>
-        
-        <div className="hidden md:flex items-center gap-8 text-gray-400 text-sm">
-          {['About', 'Experience', 'Projects', 'Skills', 'AI Twin', 'Contact'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-white transition-colors">
-              {item}
-            </a>
-          ))}
-          <MoonIcon size={18} className="text-yellow-500 cursor-pointer" />
-          <button className="flex items-center gap-2 border border-teal-500/50 text-teal-400 px-4 py-1.5 rounded-lg hover:bg-teal-500/10 transition-all">
-            <DownloadIcon size={16} /> Resume
-          </button>
-        </div>
-      </nav>
 
       {/* Main Content */}
       <main className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -50,7 +32,7 @@ const Hero = () => {
           <p className="text-gray-400 max-w-xl leading-relaxed">
             I build full-stack GenAI platforms where Spring Boot APIs, retrieval systems, 
             MCP servers, LLM gateways, security, observability, and product UX work 
-            together in production.
+            together in production. The quality of your questions often determines the quality of your solutions.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -61,7 +43,7 @@ const Hero = () => {
               <DownloadIcon size={18} /> Resume
             </button>
             <button className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors ml-2">
-              <MessageCircleIcon size={20} className="text-teal-400" /> Talk to AI Twin
+              <MessageCircleIcon size={20} className="text-teal-400" /> Talk with Bleez
             </button>
           </div>
         </div>
@@ -73,13 +55,14 @@ const Hero = () => {
             {/* Logo Section */}
             <div className="w-40 h-40 bg-gray-900 rounded-2xl flex items-center justify-center border border-gray-800">
                {/* Replace with actual SVG logo */}
-               <div className="text-teal-500 text-6xl font-black">BJ</div>
+               {/* <div className="text-teal-500 text-6xl font-black">BJ</div> */}
+               <img src = {mascot} alt="Mascot" className="-scale-x-100"/>
             </div>
             
             {/* Contact Info */}
             <div className="space-y-4 border-l border-gray-800 pl-8">
               <div>
-                <h3 className="text-gray-400 text-lg">Codenex:</h3>
+                <h3 className="text-gray-400 text-lg">Codefly:</h3>
                 <p className="text-2xl font-bold">Beena Johncy</p>
               </div>
               <div className="space-y-2 text-gray-400">

@@ -1,66 +1,112 @@
-// src/components/Navbar.jsx
+import { useEffect, useState } from "react";
+import { MoonIcon, DownloadIcon } from "lucide-react";
+import logo from "../assets/logo.png"
 
 function Navbar() {
-  return (
-    <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-7xl">
-      <div className="bg-[#0f172a]/80 backdrop-blur-xl border border-cyan-500/20 rounded-full px-8 py-4 flex items-center justify-between">
-        
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl border border-cyan-400 flex items-center justify-center text-cyan-400 font-bold text-xl">
-            B
-          </div>
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
-          <h1 className="text-white text-2xl font-bold">
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      const sections = ["about", "projects", "skills"];
+
+      if (window.scrollY < 50) {
+        setActiveSection("");
+        return;
+      }
+
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+
+        if (element) {
+          const rect = element.getBoundingClientRect();
+
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveSection(section);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-8xl">
+      <div
+        className={`
+          flex items-center justify-between
+          px-8 py-2 rounded-full
+          transition-all duration-500
+
+          ${scrolled
+            ? `
+                bg-[#0f172a]/60
+                backdrop-blur-xl
+                border border-teal-500/20
+                shadow-lg
+              `
+            : `
+                bg-transparent
+                border border-transparent
+                backdrop-blur-0
+              `
+          }
+        `}
+      >
+        {/* Logo */}
+        <div className="flex items-center">
+
+          <img src = {logo} alt="Logo" className="w-16 h-16 object-contain"/>
+          <h1 className="text-white text-xl font-bold">
             Beena Johncy
           </h1>
         </div>
 
-        {/* Nav Links */}
-        <div className="hidden lg:flex items-center gap-10 text-gray-300 font-medium">
-          <a
-            href="#about"
-            className="hover:text-cyan-400 transition"
-          >
-            About
-          </a>
+        {/* Links */}
+        <div className="hidden md:flex items-center gap-4 text-gray-400 text-sm">
+          {[
+            "About",
+            "Projects",
+            "Skills",
+          ].map((item) => {
+            const sectionId = item.toLowerCase().replace(" ", "");
 
-          <a
-            href="#experience"
-            className="hover:text-cyan-400 transition"
-          >
-            Experience
-          </a>
+            return (
+              <a
+                key={item}
+                href={`#${sectionId}`}
+                className={`
+          px-4 py-2 rounded-full font-small
+          transition-all duration-300
 
-          <a
-            href="#projects"
-            className="hover:text-cyan-400 transition"
-          >
-            Projects
-          </a>
-
-          <a
-            href="#skills"
-            className="hover:text-cyan-400 transition"
-          >
-            Skills
-          </a>
-
-          <a
-            href="#contact"
-            className="hover:text-cyan-400 transition"
-          >
-            Contact
-          </a>
+          ${activeSection === sectionId
+                    ? `
+                bg-teal-500/15
+                text-teal-400
+              `
+                    : `
+                text-gray-300
+                hover:bg-white/10
+                hover:text-white
+              `
+                  }
+        `}
+              >
+                {item}
+              </a>
+            );
+          })}
+          <MoonIcon size={18} className="text-yellow-500 cursor-pointer" />
+          <button className="flex items-center gap-2 font-bold border border-teal-500/50 text-teal-400 px-2 py-1.5 rounded-full bg-teal-500/10 transition-all hover:bg-teal-500 hover:text-white rounded-full">
+            <DownloadIcon size={16} /> Resume
+          </button>
         </div>
-
-        {/* Resume Button */}
-        <a
-          href="/resume.pdf"
-          className="border border-cyan-400 text-cyan-400 px-6 py-3 rounded-full hover:bg-cyan-400 hover:text-black transition"
-        >
-          Resume
-        </a>
       </div>
     </nav>
   );
