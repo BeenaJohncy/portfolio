@@ -12,7 +12,7 @@ function Home() {
     <div className="bg-[#020817] min-h-screen">
       <Navbar />
 
-      <main className="pt-32">
+      <main>
         <Hero />
         <About />
         <Experience/>

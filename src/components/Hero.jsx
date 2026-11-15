@@ -1,107 +1,144 @@
-import React from 'react';
+import React from "react";
 import {
   MailIcon,
   LinkedinIcon,
   GithubIcon,
   DownloadIcon,
   MessageCircleIcon,
-  MoonIcon
-} from 'lucide-react';
+  ArrowDownIcon,
+} from "lucide-react";
 import mascot from "../assets/mascot.png";
+
+const STATS = [
+  { value: "2+", label: "Years of experience" },
+  { value: "3", label: "Product domains: AI, LMS, Robotics" },
+  { value: "4", label: "Role-based LMS modules" },
+  { value: "Redis", label: "Caching & SQL tuning" },
+];
+
+const StatItem = ({ label, value }) => (
+  <div className="border-l-2 border-teal-500/40 pl-5">
+    <div className="text-3xl font-bold mb-1">{value}</div>
+    <div className="font-mono text-[11px] text-gray-500 uppercase tracking-widest leading-snug">
+      {label}
+    </div>
+  </div>
+);
 
 const Hero = () => {
   return (
-    <div className="min-h-screen bg-[#020817] text-white font-sans px-6 md:px-20 py-10">
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col justify-center bg-[#020817] text-white font-sans px-6 md:px-20 pt-28 pb-8 overflow-hidden"
+    >
+      {/* soft teal glow */}
+      <div className="pointer-events-none absolute -top-40 right-0 w-[700px] h-[700px] rounded-full bg-teal-500/10 blur-[140px]" />
 
-      {/* Main Content */}
-      <main className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left Column */}
-        <div className="space-y-6">
-          <div className="inline-flex items-center gap-2 bg-teal-950/30 border border-teal-900 px-3 py-1 rounded-full text-xs text-teal-400">
-            <span className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+      <main className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Left */}
+        <div className="space-y-5">
+          <div className="inline-flex items-center gap-2 border border-teal-500/30 bg-teal-950/20 px-4 py-2 rounded-full font-mono text-xs font-semibold text-teal-400">
+            <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
             Available for New Opportunities
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold tracking-tight">
+          <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]">
             Beena Johncy
           </h1>
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-400">
-            Full-Stack Developer
+
+          <h2 className="text-3xl md:text-5xl font-semibold text-gray-400">
+            Full-Stack <span className="text-teal-400">Developer</span>
           </h2>
 
-          <p className="text-gray-400 max-w-xl leading-relaxed">
-            I build full-stack GenAI platforms where Spring Boot APIs, retrieval systems, 
-            MCP servers, LLM gateways, security, observability, and product UX work 
-            together in production. The quality of your questions often determines the quality of your solutions.
+          <p className="text-gray-400 max-w-xl text-lg leading-relaxed">
+            I build scalable web applications and REST APIs with React, Flask
+            and Node.js, then make them fast and reliable with SQL
+            optimization and Redis caching.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-4">
-            <button className="bg-teal-400 text-black font-semibold px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-teal-300 transition-all">
-              View Projects <span className="text-xl">↓</span>
-            </button>
-            <button className="border border-gray-700 px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-gray-800 transition-all">
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 max-w-2xl">
+            {STATS.map((s) => (
+              <StatItem key={s.label} {...s} />
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4 pt-6">
+            <a
+              href="#projects"
+              className="bg-teal-400 text-black font-semibold px-7 py-4 rounded-full flex items-center gap-3 hover:bg-teal-300 transition-colors"
+            >
+              View projects <ArrowDownIcon size={18} />
+            </a>
+            <button className="border border-gray-700 font-semibold px-7 py-4 rounded-full flex items-center gap-2 hover:bg-white/5 transition-colors">
               <DownloadIcon size={18} /> Resume
             </button>
             <button className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors ml-2">
-              <MessageCircleIcon size={20} className="text-teal-400" /> Talk with Bleez
+              <MessageCircleIcon size={20} className="text-teal-400" /> Talk
+              with Bleez
             </button>
           </div>
         </div>
 
-        {/* Right Column (Virtual Business Card) */}
+        {/* Right: business card */}
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-blue-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-          <div className="relative bg-[#111827] border border-gray-800 p-8 rounded-3xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
-            {/* Logo Section */}
-            <div className="w-40 h-40 bg-gray-900 rounded-2xl flex items-center justify-center border border-gray-800">
-               {/* Replace with actual SVG logo */}
-               {/* <div className="text-teal-500 text-6xl font-black">BJ</div> */}
-               <img src = {mascot} alt="Mascot" className="-scale-x-100"/>
+          <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-blue-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000" />
+          <div className="relative bg-gradient-to-br from-teal-800/60 via-[#0B1220] to-[#0B1220] border border-teal-900/60 p-8 md:p-10 rounded-3xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
+            <div className="w-44 h-44 shrink-0 rounded-2xl flex items-center justify-center">
+              <img
+                src={mascot}
+                alt="Mascot"
+                className="-scale-x-100 w-full h-full object-contain"
+              />
             </div>
-            
-            {/* Contact Info */}
-            <div className="space-y-4 border-l border-gray-800 pl-8">
+
+            <div className="space-y-5 md:border-l border-teal-700/40 md:pl-8 w-full">
               <div>
                 <h3 className="text-gray-400 text-lg">Codefly:</h3>
                 <p className="text-2xl font-bold">Beena Johncy</p>
               </div>
-              <div className="space-y-2 text-gray-400">
-                <div className="flex items-center gap-3 hover:text-white cursor-pointer">
-                  <MailIcon size={18} /> beenajohncy2002@gmail.com
-                </div>
-                <div className="flex items-center gap-3 hover:text-white cursor-pointer">
-                  <LinkedinIcon size={18} /> linkedin.com/in/beena-johncy-490182293/
-                </div>
-                <div className="flex items-center gap-3 hover:text-white cursor-pointer">
-                  <GithubIcon size={18} /> github.com/BeenaJohncy
-                </div>
+              <div className="h-px bg-teal-700/40" />
+              <div className="space-y-3 text-gray-300 text-sm">
+                <a
+                  href="mailto:beenajohncy2002@gmail.com"
+                  className="flex items-center gap-3 hover:text-white"
+                >
+                  <MailIcon size={18} className="text-teal-400 shrink-0" />
+                  beenajohncy2002@gmail.com
+                </a>
+                <a
+                  href="https://linkedin.com/in/beena-johncy-490182293/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 hover:text-white break-all"
+                >
+                  <LinkedinIcon size={18} className="text-teal-400 shrink-0" />
+                  linkedin.com/in/beena-johncy-490182293/
+                </a>
+                <a
+                  href="https://github.com/BeenaJohncy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 hover:text-white"
+                >
+                  <GithubIcon size={18} className="text-teal-400 shrink-0" />
+                  github.com/BeenaJohncy
+                </a>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Stats Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 border-t border-gray-900 pt-10">
-        <StatItem label="KG ENTITIES" value="1M+" />
-        <StatItem label="PRODUCTION MCP SERVERS" value="6" />
-        <StatItem label="AUTOMATIONS" value="30+" />
-        <StatItem label="RETRIEVAL LIFT" value="40%" />
-      </div>
-
-      {/* Floating Chat Bubble */}
-      <div className="fixed bottom-8 right-8 w-14 h-14 bg-teal-400 rounded-full flex items-center justify-center text-black cursor-pointer shadow-lg hover:scale-110 transition-transform">
+      {/* Floating chat bubble */}
+      <button
+        aria-label="Chat with Bleez"
+        className="fixed bottom-8 right-8 w-14 h-14 bg-teal-400 rounded-full flex items-center justify-center text-black shadow-lg shadow-teal-500/30 hover:scale-110 transition-transform z-40"
+      >
         <MessageCircleIcon size={28} />
-      </div>
-    </div>
+      </button>
+    </section>
   );
 };
-
-const StatItem = ({ label, value }) => (
-  <div className="border-l border-gray-800 pl-6">
-    <div className="text-3xl font-bold mb-1">{value}</div>
-    <div className="text-xs text-gray-500 uppercase tracking-widest">{label}</div>
-  </div>
-);
 
 export default Hero;
