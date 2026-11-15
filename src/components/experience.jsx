@@ -6,7 +6,7 @@ const experiences = [
     role: "Senior Full Stack Developer",
     company: "MiBOT Ventures India Pvt Ltd",
     location: "Chennai, Tamil Nadu",
-    duration: "Dec 2025 – Present",
+    duration: "Dec 2025 - Present",
     points: [
       "Develop full-stack web applications using React, Node.js, Express.js, MySQL, and Redis.",
       "Designed and built scalable REST APIs for Learning Management System (LMS) and AI-based platforms.",
@@ -19,7 +19,7 @@ const experiences = [
     role: "Full Stack Developer",
     company: "MiBOT Ventures India Pvt Ltd",
     location: "Chennai, Tamil Nadu",
-    duration: "Apr 2025 – Nov 2025",
+    duration: "Apr 2025 - Nov 2025",
     points: [
       "Built production-ready full-stack applications using React, Flask, Node.js, MySQL, and Redis.",
       "Developed secure REST APIs for AI platforms, LMS, and Robot Controller systems.",
@@ -32,7 +32,7 @@ const experiences = [
     role: "Python Developer Trainee",
     company: "Phantom Digital Effects Ltd",
     location: "Chennai, Tamil Nadu",
-    duration: "Jan 2024 – Mar 2025",
+    duration: "Jan 2024 - Mar 2025",
     points: [
       "Enhanced Python-based production tools by implementing new features and resolving issues.",
       "Reduced production bugs through debugging, testing, and code optimization.",
@@ -45,7 +45,7 @@ const experiences = [
     role: "Software Intern",
     company: "CRUD Operations Pvt Ltd",
     location: "Chennai, Tamil Nadu",
-    duration: "Jun 2023 – Dec 2023",
+    duration: "Jun 2023 - Dec 2023",
     points: [
       "Worked on frontend and backend development using modern web technologies.",
       "Learned software development best practices and Agile workflows.",

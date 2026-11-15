@@ -42,7 +42,7 @@ const Hero = () => {
             Available for New Opportunities
           </div>
 
-          <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="text-6xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.8]">
             Beena Johncy
           </h1>
 
@@ -83,7 +83,7 @@ const Hero = () => {
         {/* Right: business card */}
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-blue-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000" />
-          <div className="relative bg-gradient-to-br from-teal-800/60 via-[#0B1220] to-[#0B1220] border border-teal-900/60 p-8 md:p-10 rounded-3xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
+          <div className="relative min-h-[320px] bg-gradient-to-br from-teal-800/60 via-[#0B1220] to-[#0B1220] border border-teal-900/60 p-8 md:p-7 rounded-3xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
             <div className="w-44 h-44 shrink-0 rounded-2xl flex items-center justify-center">
               <img
                 src={mascot}

@@ -32,9 +32,9 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl">
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[91%] max-w-8xl">
       <div
-        className={`flex items-center justify-between px-6 py-2 rounded-full border transition-all duration-500
+        className={`flex items-center justify-between px-6 py-2 rounded-full transition-all duration-500
           ${
             scrolled
               ? "bg-[#0B1220]/70 backdrop-blur-xl border-teal-500/20 shadow-[0_0_40px_-10px_rgba(45,212,191,0.25)]"
@@ -70,13 +70,13 @@ function Navbar() {
           <span className="w-px h-6 bg-gray-700 mx-2" />
 
           {/* Search hint (wire up to a command palette later) */}
-          <button
+          {/* <button
             aria-label="Search"
             className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-700 text-gray-500 hover:text-white hover:border-gray-500 transition-colors"
           >
             <SearchIcon size={14} />
             <span className="font-mono text-xs">⌘K</span>
-          </button>
+          </button> */}
 
           <button aria-label="Toggle theme" className="p-2">
             <SunIcon size={18} className="text-yellow-400" />

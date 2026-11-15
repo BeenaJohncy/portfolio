@@ -65,7 +65,7 @@ const About = ({ onAsk }) => {
                 {/* <span className="block text-teal-400">Beena</span> */}
               </h1>
 
-              <p className="mt-6 text-xl text-gray-400 leading-relaxed">
+              <p className="mt-6 text-lg text-gray-400 leading-relaxed">
                 I build web applications that stay fast and dependable after
                 launch: clean APIs, tuned databases and interfaces people
                 enjoy using.
@@ -81,7 +81,7 @@ const About = ({ onAsk }) => {
                       Senior Full-Stack Developer
                     </p>
                     <p className="text-sm text-gray-400">
-                      MiBOT Ventures · Dec 2025 – present
+                      MiBOT Ventures · Dec 2025 - present
                     </p>
                   </dd>
                 </div>
@@ -112,10 +112,10 @@ const About = ({ onAsk }) => {
           <div className="space-y-8">
             {/* Intro with logo */}
             <div className="flex items-start gap-6">
-              <div className="hidden sm:flex w-16 h-16 shrink-0 rounded-2xl bg-teal-500/10 border border-teal-900/60 items-center justify-center">
+              <div className="hidden sm:flex w-14 h-14 shrink-0 rounded-2xl bg-teal-500/10 border border-teal-900/60 items-center justify-center">
                 <img src={logo} alt="" className="w-10 h-10 object-contain" />
               </div>
-              <p className="text-gray-300 text-xl leading-10">
+              <p className="text-gray-300 text-lg leading-7" >
                 I focus on the engineering that keeps an application healthy
                 after release: designing REST APIs, optimizing databases,
                 caching what matters, and building responsive React
