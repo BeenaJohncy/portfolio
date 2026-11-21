@@ -183,20 +183,13 @@ const Experience = ({ onAsk }) => {
                       </div>
                     </div>
 
-                    <ul className="mt-8 space-y-5">
+                    <ul className="mt-5 space-y-5">
                       {exp.points.map((point, j) => (
-                        <li key={j} className="flex gap-4 text-gray-300 leading-8">
+                        <li key={j} className="flex gap-4 text-gray-300 leading-6">
                           <span className="w-2 h-2 mt-3 shrink-0 rounded-full bg-teal-400" />
                           <div>
                             {point}
-                            <div>
-                              <button
-                                onClick={() => onAsk?.(`${exp.role} at ${exp.company}: ${point}`)}
-                                className="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-900/60 text-teal-400/80 font-mono text-[10px] uppercase tracking-wider hover:bg-teal-500/10 hover:text-teal-300 transition-colors"
-                              >
-                                <SparklesIcon size={11} /> Ask about this
-                              </button>
-                            </div>
+
                           </div>
                         </li>
                       ))}

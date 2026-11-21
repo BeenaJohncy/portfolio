@@ -124,8 +124,8 @@ const About = ({ onAsk }) => {
             </div>
 
             {/* Career highlight */}
-            <div className="rounded-3xl border border-teal-900/40 bg-[#0B1220] p-8 md:p-10">
-              <div className="flex items-start gap-6">
+            <div className="rounded-3xl border border-teal-900/40 bg-[#0B1220] p-8 md:p-7">
+              <div className="flex items-start gap-4">
                 <div className="w-14 h-14 shrink-0 rounded-2xl border border-teal-500/30 bg-teal-500/10 flex items-center justify-center">
                   <TrendingUpIcon className="text-teal-400" size={26} />
                 </div>
@@ -133,7 +133,7 @@ const About = ({ onAsk }) => {
                   <p className="font-mono text-xs uppercase tracking-[4px] text-teal-400">
                     Growth
                   </p>
-                  <h3 className="text-3xl md:text-4xl font-bold mt-2">
+                  <h3 className="text-3xl md:text-3xl font-bold mt-2">
                     Promoted to Senior Full-Stack Developer
                   </h3>
                   <p className="text-gray-400 mt-4 text-lg leading-8">
