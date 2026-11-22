@@ -1,63 +1,94 @@
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, Github, Sparkles } from "lucide-react";
 
-const projects = [
+const featured = [
   {
-    tag: "FULL-STACK AI SYSTEM",
-    status: "Live",
-    title: "Employee Attendance Dashboard",
+    tag: "AI MONITORING · LIVE DASHBOARD",
+    status: "",
+    title: "SPML Attendance & Anomaly Monitoring",
     description:
-      "Face-recognition onboarding and attendance system with a web dashboard for tracking employees in real time.",
-    role: "Backend, computer-vision pipeline, and dashboard development",
+      "Real-time dashboard that receives AI detections over APIs and WebSockets and shows attendance, a live headcount, and safety alerts.",
+    role: "Backend APIs, real-time data flow, authentication, and dashboard",
     impact:
-      "Automates attendance capture with on-device face detection, removing manual check-ins.",
-    tech: ["Python", "Flask", "BlazeFace", "React", "MySQL", "Tailwind"],
-    image: "/assets/projects/attendance.png",
-    live: "#",
-    source: "#",
+      "Flags unauthorized entry, visitors, and fire/smoke events as they happen and sends email alerts.",
+    highlights: [
+      "Receives AI detection data through REST APIs and pushes it to the dashboard over WebSockets",
+      "Detects unauthorized persons, visitors, and fire/smoke, with a live people count",
+      "Multi-factor authentication and email alerts for critical events",
+    ],
+    tech: ["FastAPI", "React", "Vite", "WebSocket", "MFA", "Email Alerts"],
+    image: "",
+    live: "",
+    source: "",
   },
   {
-    tag: "EDGE AI & SAFETY",
-    status: "POC",
-    title: "Worksite Safety VLM Pipeline",
+    tag: "BACKEND · API LAYER",
+    status: "",
+    title: "AI Data Transfer API Platform",
     description:
-      "Vision-language model pipeline that detects work-at-height, barricade, and fire-safety violations from camera feeds.",
-    role: "Prompt design, pipeline engineering, and edge deployment",
+      "Secure API layer that carries AI detection results and images from processing systems to databases and client applications.",
+    role: "Designed and built the transfer APIs",
     impact:
-      "Runs fully on a Jetson AGX with a local model, so no video leaves the site.",
-    tech: ["Python", "Ollama", "qwen2.5vl", "Jetson AGX", "OpenCV"],
-    image: "/assets/projects/safety.png",
+      "Used across multiple AI projects, so detection output reaches databases and dashboards reliably.",
+    highlights: [
+      "Secure REST APIs between AI services and client applications",
+      "Encrypted image transfer",
+      "Redis caching and queue-based processing for transfer efficiency",
+      "Dockerized for deployment",
+    ],
+    tech: ["Python", "Flask", "MySQL", "Redis", "Docker", "REST APIs"],
+    image: "",
     live: "",
-    source: "#",
+    source: "",
   },
   {
     tag: "FULL-STACK WEB APP",
-    status: "Live",
-    title: "Your Next Project",
-    description: "Short one-line description of what the project does.",
-    role: "Your role in the project",
-    impact: "The measurable result or why it matters.",
-    tech: ["React", "Node", "PostgreSQL", "Redis", "Docker"],
-    image: "/assets/projects/project3.png",
-    live: "#",
-    source: "#",
+    status: "",
+    title: "Learning Management System",
+    description:
+      "LMS with separate Admin, College, Trainer, and Student modules.",
+    role: "Full-stack development, including the secure REST APIs",
+    impact:
+      "Role-based access control makes sure each user only sees what their module allows.",
+    highlights: [
+      "Four role-based modules with separate permissions",
+      "Secure REST APIs between the React frontend and Node.js backend",
+    ],
+    tech: ["React.js", "Node.js", "MySQL"],
+    image: "",
+    live: "",
+    source: "",
+  },
+];
+
+const compact = [
+  {
+    title: "KH Attendance Dashboard",
+    text: "Processes the Excel attendance data saved by the AI system and displays it in a clean dashboard.",
+    tech: ["Python", "Flask", "HTML", "CSS", "Bootstrap"],
+  },
+  {
+    title: "Robot Operations Control Dashboard",
+    text: "Dashboard for starting and stopping robots, mapping, navigation, and emergency alerts.",
+    tech: ["React.js", "Flask"],
   },
 ];
 
 function ProjectCard({ project, index, total }) {
-  const cardRef = useRef(null);
-  const [progress, setProgress] = useState(0); // 0 -> 1 as the next card covers this one
+  const wrapRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+
+  const STICKY_TOP = 112 + index * 14; // navbar height + small peek offset per card
 
   useEffect(() => {
     const onScroll = () => {
-      const el = cardRef.current;
+      const el = wrapRef.current;
       if (!el) return;
-      const next = el.parentElement.nextElementSibling;
+      const next = el.nextElementSibling;
       if (!next) return setProgress(0);
       const nextTop = next.getBoundingClientRect().top;
-      const stickyTop = 112; // keep in sync with `top` below
-      const range = window.innerHeight - stickyTop;
-      const p = 1 - Math.min(Math.max((nextTop - stickyTop) / range, 0), 1);
+      const range = window.innerHeight * 0.8;
+      const p = 1 - Math.min(Math.max((nextTop - STICKY_TOP) / range, 0), 1);
       setProgress(p);
     };
     onScroll();
@@ -67,28 +98,27 @@ function ProjectCard({ project, index, total }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
-
-  const scale = 1 - progress * 0.05;
-  const brightness = 1 - progress * 0.35;
+  }, [STICKY_TOP]);
 
   return (
-    <div className="h-[85vh] md:h-[90vh]">
+    // sticky is now on the WRAPPER, and the wrapper's parent is the tall list
+    <div
+      ref={wrapRef}
+      className="sticky mb-[18vh]"
+      style={{ top: STICKY_TOP, zIndex: index + 1 }}
+    >
       <article
-        ref={cardRef}
         style={{
-          top: 112 + index * 12, // small offset so the stack edges peek out
-          transform: `scale(${scale})`,
-          filter: `brightness(${brightness})`,
-          zIndex: index + 1,
+          transform: `scale(${1 - progress * 0.05})`,
+          filter: `brightness(${1 - progress * 0.35})`,
         }}
-        className="sticky origin-top overflow-hidden rounded-3xl border border-teal-500/20
+        className="origin-top overflow-hidden rounded-3xl border border-teal-500/20
                    bg-[#07161d] shadow-[0_0_60px_-20px_rgba(45,212,191,0.35)]
-                   transition-[filter] duration-150 will-change-transform"
+                   will-change-transform"
       >
         <div className="grid md:grid-cols-2">
           {/* Left: details */}
-          <div className="flex flex-col gap-5 p-6 md:p-10">
+          <div className="flex flex-col gap-5 p-4 pb-2 md:p-7">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs tracking-widest text-teal-400">
                 {project.tag}
@@ -99,13 +129,13 @@ function ProjectCard({ project, index, total }) {
               </span>
             </div>
 
-            <h3 className="text-3xl font-bold text-white md:text-5xl">
+            <h3 className="text-1xl font-bold text-white md:text-5xl">
               {project.title}
             </h3>
 
-            <button className="flex w-fit items-center gap-1.5 rounded-full border border-teal-500/30 px-3 py-1 font-mono text-[11px] tracking-wider text-teal-300 hover:bg-teal-500/10">
+            {/* <button className="flex w-fit items-center gap-1.5 rounded-full border border-teal-500/30 px-3 py-1 font-mono text-[11px] tracking-wider text-teal-300 hover:bg-teal-500/10">
               <Sparkles size={12} /> ASK ABOUT THIS
-            </button>
+            </button> */}
 
             <p className="text-lg text-slate-400">{project.description}</p>
 
@@ -119,6 +149,22 @@ function ProjectCard({ project, index, total }) {
                 <dd className="text-slate-400">{project.impact}</dd>
               </div>
             </dl>
+
+            {project.highlights && (
+              <div>
+                <p className="mb-2 font-mono text-xs tracking-widest text-slate-500">
+                  WHAT I BUILT
+                </p>
+                <ul className="space-y-1.5 text-sm text-slate-300">
+                  {project.highlights.map((h) => (
+                    <li key={h} className="flex gap-2">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-teal-400" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
@@ -172,11 +218,45 @@ function ProjectCard({ project, index, total }) {
   );
 }
 
+function MoreProjects() {
+  return (
+    <div className="mt-8">
+      <div className="mb-6 flex items-center gap-4">
+        <span className="font-mono text-sm tracking-[0.25em] text-teal-300">
+          MORE PROJECTS
+        </span>
+        <span className="h-px flex-1 bg-teal-500/20" />
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {compact.map((p) => (
+          <div
+            key={p.title}
+            className="rounded-2xl border border-teal-500/20 bg-[#07161d] p-6"
+          >
+            <h4 className="text-xl font-semibold text-white">{p.title}</h4>
+            <p className="mt-2 text-sm text-slate-400">{p.text}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {p.tech.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-md border border-teal-500/25 bg-teal-500/10 px-2.5 py-1 font-mono text-xs text-teal-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Work() {
   return (
-    <section id="work" className="relative px-4 py-24 md:px-10">
+    <section id="work" className="relative px-4 py-20 md:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex items-center gap-4">
+        <div className="mb-10 flex items-center gap-4">
           <span className="font-mono text-sm tracking-[0.25em] text-teal-300">
             BUILT AND SHIPPED
           </span>
@@ -184,11 +264,12 @@ export default function Work() {
         </div>
 
         {/* IMPORTANT: no overflow-hidden on this wrapper or any parent, or sticky breaks */}
-        <div>
-          {projects.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={i} total={projects.length} />
+        <div className="pb-[10vh]">
+          {featured.map((p, i) => (
+            <ProjectCard key={p.title} project={p} index={i} />
           ))}
         </div>
+        <MoreProjects />
       </div>
     </section>
   );
